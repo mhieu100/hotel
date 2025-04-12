@@ -39,6 +39,10 @@ export const callUpdateRoom = (
   });
 };
 
+export const callFetchRoomById = (id) => {
+  return axios.get(`/rooms/${id}`);
+};
+
 export const callFetchRoom = (query) => {
   return axios.get(`/rooms?${query}`);
 };

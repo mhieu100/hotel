@@ -1,4 +1,4 @@
-import { HeartOutlined, MenuOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons'
+import { MenuOutlined, UserOutlined } from '@ant-design/icons'
 import { Avatar, Button, Drawer, Dropdown, Menu, message, Space } from 'antd'
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -48,10 +48,11 @@ const Navbar = () => {
         key: 'system',
         label: <Link to='/admin/dashboard'>Trang quản trị</Link>,
       }
-      : {
-        key: 'profile',
-        label: <Link to='/profile'>Hồ sơ</Link>,
-      },
+      : null,
+    {
+      key: 'profile',
+      label: <Link to='/profile'>Hồ sơ</Link>,
+    },
     {
       key: 'logout',
       danger: true,
@@ -74,9 +75,8 @@ const Navbar = () => {
           <li>
             <Link
               to="/"
-              className={`relative py-1 text-white hover:text-yellow-500 transition-colors duration-300 ${
-                current === '/' ? 'text-yellow-500' : ''
-              } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-yellow-500 
+              className={`relative py-1 text-white hover:text-yellow-500 transition-colors duration-300 ${current === '/' ? 'text-yellow-500' : ''
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-yellow-500 
               ${current === '/' ? 'after:scale-x-100' : 'after:scale-x-0'} 
               hover:after:scale-x-100 after:transition-transform after:duration-300`}
             >
@@ -86,9 +86,8 @@ const Navbar = () => {
           <li>
             <Link
               to="/all-rooms"
-              className={`relative py-1 text-white hover:text-yellow-500 transition-colors duration-300 ${
-                current === '/all-rooms' ? 'text-yellow-500' : ''
-              } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-yellow-500 
+              className={`relative py-1 text-white hover:text-yellow-500 transition-colors duration-300 ${current === '/all-rooms' ? 'text-yellow-500' : ''
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-yellow-500 
               ${current === '/all-rooms' ? 'after:scale-x-100' : 'after:scale-x-0'} 
               hover:after:scale-x-100 after:transition-transform after:duration-300`}
             >
@@ -98,9 +97,8 @@ const Navbar = () => {
           <li>
             <Link
               to="/contact"
-              className={`relative py-1 text-white hover:text-yellow-500 transition-colors duration-300 ${
-                current === '/contact' ? 'text-yellow-500' : ''
-              } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-yellow-500 
+              className={`relative py-1 text-white hover:text-yellow-500 transition-colors duration-300 ${current === '/contact' ? 'text-yellow-500' : ''
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-yellow-500 
               ${current === '/contact' ? 'after:scale-x-100' : 'after:scale-x-0'} 
               hover:after:scale-x-100 after:transition-transform after:duration-300`}
             >
@@ -150,9 +148,8 @@ const Navbar = () => {
           <li onClick={closeDrawer}>
             <Link
               to="/"
-              className={`block py-2 text-white hover:text-yellow-500 transition-colors ${
-                current === '/' ? 'text-yellow-500' : ''
-              }`}
+              className={`block py-2 text-white hover:text-yellow-500 transition-colors ${current === '/' ? 'text-yellow-500' : ''
+                }`}
             >
               Home
             </Link>
@@ -160,9 +157,8 @@ const Navbar = () => {
           <li onClick={closeDrawer}>
             <Link
               to="/shop"
-              className={`block py-2 text-white hover:text-yellow-500 transition-colors ${
-                current === '/shop' ? 'text-yellow-500' : ''
-              }`}
+              className={`block py-2 text-white hover:text-yellow-500 transition-colors ${current === '/shop' ? 'text-yellow-500' : ''
+                }`}
             >
               Shop
             </Link>
@@ -170,9 +166,8 @@ const Navbar = () => {
           <li onClick={closeDrawer}>
             <Link
               to="/blog"
-              className={`block py-2 text-white hover:text-yellow-500 transition-colors ${
-                current === '/blog' ? 'text-yellow-500' : ''
-              }`}
+              className={`block py-2 text-white hover:text-yellow-500 transition-colors ${current === '/blog' ? 'text-yellow-500' : ''
+                }`}
             >
               Blog
             </Link>

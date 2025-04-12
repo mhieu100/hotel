@@ -19,6 +19,8 @@ import RoomPage from './pages/admin/room';
 import AllRooms from './pages/client/_allrooms';
 import Contact from './pages/client/_contact';
 import Profile from './pages/client/_profile';
+import CheckoutPage from './pages/client/_checkout';
+import Thankyou from './pages/client/_thankyou';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,6 +47,8 @@ const App = () => {
         { index: true, element: <HomePage /> },
         { path: 'all-rooms', element: <AllRooms /> },
         { path: 'contact', element: <Contact /> },
+        { path: 'checkout/:id', element: <CheckoutPage /> },
+        { path: 'thankyou', element: <Thankyou /> },
         {
           path: 'profile', element:
             <ProtectedUserRoute>
