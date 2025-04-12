@@ -8,7 +8,7 @@ const HomePage = () => {
           <div className="text-center px-4">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Experience Luxury Redefined</h1>
             <p className="text-xl text-white mb-8 max-w-2xl mx-auto">Discover unparalleled comfort at Furama Hotel, where every detail is crafted for your pleasure.</p>
-            <button className="bg-gold hover:bg-yellow-600 text-primary font-bold py-3 px-8 rounded-full transition duration-300">Book Now</button>
+            <button className="bg-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-full transition duration-300">Book Now</button>
           </div>
         </div>
       </section>

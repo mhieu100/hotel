@@ -53,7 +53,6 @@ const Contact = () => {
                                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.9244627094486!2d108.2513977141696!3d16.039943143703427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31420fdbc8cc38ef%3A0x9a6a3e31121225d2!2sFurama%20Resort%20Danang!5e0!3m2!1sen!2s!4v1632735755181!5m2!1sen!2s"
                                         width="100%"
                                         height="400"
-                                        style="border:0;"
                                         allowfullscreen=""
                                         loading="lazy"
                                         className="rounded-lg"
@@ -199,3 +198,5 @@ const Contact = () => {
 }
 
 export default Contact
+
+

@@ -1,12 +1,9 @@
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
-  MenuFoldOutlined,
-  UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
   AppstoreOutlined,
-  UserSwitchOutlined,
 } from '@ant-design/icons';
 import {
   Avatar,

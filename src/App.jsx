@@ -12,13 +12,13 @@ import { fetchAccount } from './redux/slice/accountSlide';
 import LayoutApp from './components/share/layout.app';
 import ProtectedAdminRoute from './components/share/protected-route';
 import UserPage from './pages/admin/user';
-import ProfilePage from './pages/auth/profile';
 import ProtectedUserRoute from './components/share/protected-route/user-protected';
 
 import HomePage from './pages/client/_home';
 import RoomPage from './pages/admin/room';
 import AllRooms from './pages/client/_allrooms';
-// import Contact from './pages/client/_contact';
+import Contact from './pages/client/_contact';
+import Profile from './pages/client/_profile';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,11 +44,11 @@ const App = () => {
       children: [
         { index: true, element: <HomePage /> },
         { path: 'all-rooms', element: <AllRooms /> },
-        // { path: 'contact', element: <Contact /> },
+        { path: 'contact', element: <Contact /> },
         {
           path: 'profile', element:
             <ProtectedUserRoute>
-              <ProfilePage />
+              <Profile />
             </ProtectedUserRoute>
         },
       ],

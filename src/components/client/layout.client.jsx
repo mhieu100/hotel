@@ -2,8 +2,8 @@ import { Outlet } from 'react-router-dom';
 
 import Loading from '../share/loading';
 import { useEffect, useState } from 'react';
-import Navbar from './_navbar';
 import Footer from './_footer';
+import Navbar from './_navbar';
 
 const LayoutClient = () => {
 
