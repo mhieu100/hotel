@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
   CheckSquareOutlined,
+  InboxOutlined,
 } from '@ant-design/icons';
 import {
   FooterToolbar,
@@ -14,11 +15,13 @@ import {
   message,
   notification,
   Row,
+  Upload,
 } from 'antd';
 import 'react-quill/dist/quill.snow.css';
 
 import '../../styles/reset.scss';
 import { callCreateRoom, callUpdateRoom } from '../../config/api.room';
+import { callUploadSingleFile } from '../../config/api.file';
 
 const ROOM_TYPES = [
   { label: 'Single', value: 'SINGLE' },
@@ -41,6 +44,8 @@ const ModalRoom = (props) => {
   const { openModal, setOpenModal, reloadTable, dataInit, setDataInit } = props;
   const [form] = Form.useForm();
   const [animation, setAnimation] = useState('open');
+  const [fileList, setFileList] = useState([]);
+  const [imageUrl, setimageUrl] = useState(null);
 
   const handleReset = async () => {
     form.resetFields();
@@ -52,6 +57,43 @@ const ModalRoom = (props) => {
     setAnimation('open');
   };
 
+  const handleUpload = async (file) => {
+    try {
+      const res = await callUploadSingleFile(file, 'rooms');
+      if (res?.data?.fileName) {
+        return res.data.fileName;
+      }
+      throw new Error('Upload failed');
+    } catch (error) {
+      message.error('Không thể tải ảnh lên');
+      return null;
+    }
+  };
+
+  const uploadProps = {
+    onRemove: () => {
+      setFileList([]);
+    },
+    beforeUpload: (file) => {
+      const isImage = file.type.startsWith('image/');
+      if (!isImage) {
+        message.error('Bạn chỉ có thể tải lên file ảnh!');
+        return false;
+      }
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        message.error('Ảnh phải nhỏ hơn 2MB!');
+        return false;
+      }
+      setFileList([file]);
+      return false;
+    },
+    onChange: (info) => {
+      setFileList(info.fileList);
+    },
+    fileList,
+  };
+
   const submitRoom = async (valuesForm) => {
     const {
       roomNumber,
@@ -61,6 +103,20 @@ const ModalRoom = (props) => {
       features,
     } = valuesForm;
 
+    // Upload image if exists
+    let imageUrl = null;
+    if (fileList.length > 0) {
+      const file = fileList[0].originFileObj;
+      if (!file) {
+        message.error('Có lỗi với file ảnh, vui lòng thử lại');
+        return;
+      }
+      imageUrl = await handleUpload(file);
+      if (!imageUrl) {
+        return; // Stop if image upload failed
+      }
+    }
+
     if (dataInit?.id) {
       const res = await callUpdateRoom(
         dataInit.id,
@@ -69,33 +125,36 @@ const ModalRoom = (props) => {
         pricePerNight,
         maxOccupancy,
         features,
+        imageUrl || dataInit.imageUrl // Keep old image if no new upload
       );
       if (res.data) {
-        message.success('Vaccine updated successfully');
+        message.success('Cập nhật phòng thành công');
         handleReset();
         reloadTable();
       } else {
         notification.error({
-          message: 'An error occurred',
+          message: 'Có lỗi xảy ra',
           description: res.message,
         });
       }
     } else {
-
+      console.log(imageUrl)
       const res = await callCreateRoom(
         roomNumber,
         type,
         pricePerNight,
         maxOccupancy,
         features,
+        imageUrl
       );
+      console.log(res)
       if (res.data) {
-        message.success('Vaccine created successfully');
+        message.success('Tạo phòng mới thành công');
         handleReset();
         reloadTable();
       } else {
         notification.error({
-          message: 'An error occurred',
+          message: 'Có lỗi xảy ra',
           description: res.message,
         });
       }
@@ -185,9 +244,25 @@ const ModalRoom = (props) => {
                   options={ROOM_FEATURES}
                 />
               </Col>
+              <Col span={24}>
+                <Form.Item
+                  label="Ảnh phòng"
+                  name="image"
+                  rules={[{ required: !dataInit?.id, message: 'Vui lòng tải lên ảnh phòng' }]}
+                >
+                  <Upload.Dragger {...uploadProps} maxCount={1}>
+                    <p className="ant-upload-drag-icon">
+                      <InboxOutlined />
+                    </p>
+                    <p className="ant-upload-text">Nhấp hoặc kéo thả file ảnh vào đây</p>
+                    <p className="ant-upload-hint">
+                      Hỗ trợ tải lên một ảnh duy nhất. Kích thước tối đa 2MB.
+                    </p>
+                  </Upload.Dragger>
+                </Form.Item>
+              </Col>
             </Row>
           </ModalForm>
-
         </>
       )}
     </>

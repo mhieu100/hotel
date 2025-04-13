@@ -79,7 +79,23 @@ const RoomPage = () => {
       sorter: true,
       hideInSearch: true,
     },
-    
+    {
+      title: 'Image',
+      dataIndex: 'imageUrl',
+      hideInSearch: true,
+      render: (text) => (
+        <img
+          src={'http://localhost:8080/storage/rooms/' + text}
+          alt='center'
+          style={{
+            width: '50px',
+            height: 'auto',
+            objectFit: 'cover',
+            borderRadius: '8px',
+          }}
+        />
+      ),
+    },
     {
       title: 'Available',
       dataIndex: 'available',

@@ -22,6 +22,7 @@ import Profile from './pages/client/_profile';
 import CheckoutPage from './pages/client/_checkout';
 import Thankyou from './pages/client/_thankyou';
 import BookingsPage from './pages/admin/BookingsPage';
+import AvailableRoomsPage from './pages/client/_available-rooms';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const App = () => {
               <Profile />
             </ProtectedUserRoute>
         },
+        { path: 'available-rooms', element: <AvailableRoomsPage /> },
       ],
     },
     

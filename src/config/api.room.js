@@ -11,7 +11,7 @@ export const callCreateRoom = (
   pricePerNight,
   maxOccupancy,
   features,
-
+  imageUrl
 ) => {
   return axios.post('/rooms', {
     roomNumber,
@@ -19,6 +19,7 @@ export const callCreateRoom = (
     pricePerNight,
     maxOccupancy,
     features,
+    imageUrl
   });
 };
 
@@ -29,6 +30,7 @@ export const callUpdateRoom = (
   pricePerNight,
   maxOccupancy,
   features,
+  imageUrl
 ) => {
   return axios.put(`/rooms/${id}`, {
     roomNumber,
@@ -36,6 +38,7 @@ export const callUpdateRoom = (
     pricePerNight,
     maxOccupancy,
     features,
+    imageUrl
   });
 };
 

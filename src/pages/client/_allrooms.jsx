@@ -192,7 +192,7 @@ const AllRooms = () => {
                                     <div key={index}>
                                         <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
                                             <div className="relative">
-                                                <div className="h-48 bg-[url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80')] bg-cover bg-center" />
+                                                <div className={`h-48 bg-[url('http://localhost:8080/storage/rooms/${room.imageUrl}')] bg-cover bg-center`} />
                                                 {!room.available && (
                                                     <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
                                                         Unavailable

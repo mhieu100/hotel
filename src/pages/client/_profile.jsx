@@ -11,7 +11,6 @@ const Profile = () => {
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bookings, setBookings] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -20,7 +19,6 @@ const Profile = () => {
 
   const fetchUserBookings = async () => {
     try {
-      setLoading(true);
       const res = await callGetUserBookings(user.id);
       console.log(res.data)
       if (res?.data) {
@@ -29,9 +27,7 @@ const Profile = () => {
     } catch (error) {
       console.error('Fetch bookings error:', error);
       message.error('Không thể tải lịch sử đặt phòng');
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   const showModal = () => {

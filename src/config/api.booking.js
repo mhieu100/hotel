@@ -73,4 +73,13 @@ export const callUpdateBookingStatus = (bookingId, status) => {
  */
 export const callCancelBooking = (bookingId) => {
     return axios.delete(`/bookings/${bookingId}`);
+};
+
+export const callCheckAvailability = (checkInDate, checkOutDate, roomType, numberOfGuests) => {
+  return axios.post('/rooms/check-availability', {
+    checkInDate,
+    checkOutDate,
+    roomType,
+    numberOfGuests
+  });
 }; 
