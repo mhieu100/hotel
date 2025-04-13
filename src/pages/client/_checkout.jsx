@@ -47,10 +47,14 @@ const CheckoutPage = () => {
       };
 
       const res = await callCreateBooking(bookingData);
+
       if (res && res.data) {
         message.success('Booking created successfully!');
-        navigate('/thankyou'); 
+        navigate('/thankyou');
+      } else {
+        message.error(res.error);
       }
+
     } catch (error) {
       console.error('Booking error:', error);
       message.error('Failed to create booking. Please try again.');

@@ -25,17 +25,20 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
+      // Dispatch logout action first to clear the Redux state
+      dispatch(setLogoutAction());
+      
+      // Then call the API
       const res = await callLogout();
-      if (res?.statusCode === 200) {
-        dispatch(setLogoutAction());
-        message.success('Đăng xuất thành công');
-        navigate('/');
-      } else {
-        message.error('Đăng xuất thất bại');
-      }
+      
+      // Navigate regardless of API response since we've already logged out in Redux
+      message.success('Đăng xuất thành công');
+      navigate('/');
     } catch (error) {
       console.error('Logout error:', error);
-      message.error('Đăng xuất thất bại. Vui lòng thử lại');
+      // Even if API fails, we're still logged out locally
+      message.success('Đăng xuất thành công');
+      navigate('/');
     }
   };
 
@@ -43,7 +46,7 @@ const Navbar = () => {
     {
       label: `Welcome ${user?.fullname}`,
     },
-    user.roleName !== 'PATIENT'
+    user.roleName !== 'GUEST'
       ? {
         key: 'system',
         label: <Link to='/admin/dashboard'>Trang quản trị</Link>,

@@ -4,6 +4,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
   AppstoreOutlined,
+  CalendarOutlined,
 } from '@ant-design/icons';
 import {
   Avatar,
@@ -72,6 +73,12 @@ const LayoutAdmin = () => {
       path: '/admin/rooms',
       icon: <VideoCameraOutlined />,
       name: <Link to='/admin/rooms'>Room</Link>,
+      roles: ['ADMIN', 'RECEPTIONIST', 'CASHIER']
+    },
+    {
+      path: '/admin/bookings',
+      icon: <CalendarOutlined />,
+      name: <Link to='/admin/bookings'>Bookings</Link>,
       roles: ['ADMIN', 'RECEPTIONIST', 'CASHIER']
     },
   ];

@@ -21,6 +21,7 @@ import Contact from './pages/client/_contact';
 import Profile from './pages/client/_profile';
 import CheckoutPage from './pages/client/_checkout';
 import Thankyou from './pages/client/_thankyou';
+import BookingsPage from './pages/admin/BookingsPage';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -81,6 +82,10 @@ const App = () => {
         {
           path: 'users',
           element: <UserPage />,
+        },
+        {
+          path: 'bookings',
+          element: <BookingsPage />,
         },
       ],
     },

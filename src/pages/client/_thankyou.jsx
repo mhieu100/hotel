@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 
 const Thankyou = () => {
   return (
@@ -34,9 +35,9 @@ const Thankyou = () => {
         <a href="#" className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-secondary transition duration-300">
           <i className="fas fa-download mr-2"/> Download Invoice
         </a>
-        <a href="#" className="px-6 py-3 border border-primary text-primary rounded-lg font-medium hover:bg-gray-100 transition duration-300">
+        <Link to="/" className="px-6 py-3 border border-primary text-primary rounded-lg font-medium hover:bg-gray-100 transition duration-300">
           <i className="fas fa-home mr-2"/> Back to Home
-        </a>
+        </Link>
       </div>
     </div>
   </div></div>
